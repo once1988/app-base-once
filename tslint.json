@@ -1,0 +1,107 @@
+{
+  "rules": {
+    "space-before-function-paren": false,
+    "semicolon": [
+      true,
+      "never"
+    ],
+    "no-var-keyword": true,
+    "no-unused-variable": [
+      true,
+      {
+        "ignore-pattern": "^_"
+      }
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "class-name": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "no-eval": true,
+    "no-internal-module": true,
+    "no-trailing-whitespace": true,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-whitespace"
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
+    "member-access": [
+      true,
+      "no-public"
+    ],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          "public-constructor",
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
+        ]
+      }
+    ],
+    "no-duplicate-variable": true,
+    "no-unused-expression": true,
+    "curly": true,
+    "no-arg": true,
+    "no-switch-case-fall-through": true,
+    "no-unnecessary-initializer": true
+  },
+  "jsRules": {
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ]
+  },
+  "defaultSeverity": "warning"
+}
