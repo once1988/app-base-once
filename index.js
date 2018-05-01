@@ -1,1 +1,1 @@
-module.exports = require('./bin')
+module.exports = require('./bin/app-base-once')
