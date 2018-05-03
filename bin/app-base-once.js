@@ -925,4 +925,4 @@ var com;
     once.App = App;
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-module.export = com
+module.exports = com
