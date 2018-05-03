@@ -40,20 +40,49 @@ namespace com.once {
      * @param callBack
      * @param callBackThisObj
      */
-    static onHide(...callBacks: extension.MethodUnAutoGc[]): void {
-      callBacks.forEach((callBack: extension.MethodUnAutoGc): void => {
-        App.mapCbWhileHide.add(callBack.handler, callBack, callBack.thisObj)
-      })
+    static onHide(handler: Function, thisObj: any, ...args: any[]): void {
+      let method: extension.MethodUnAutoGc = App.mapCbWhileHide.get(handler, thisObj)
+      if (method == null) {
+        method = extension.MethodUnAutoGc.borrow(handler, thisObj)
+        method.updateArgs(args)
+        App.mapCbWhileHide.add(handler, method)
+      }
+    }
+    /**
+     * 取消一个切换到后台的监听
+     * @param handler
+     * @param thisObj
+     * @param args
+     */
+    static offHide(handler: Function, thisObj: any): void {
+      let method: extension.MethodUnAutoGc = App.mapCbWhileHide.del(handler, thisObj)
+      if (method != null) {
+        method.return()
+      }
     }
     /**
      * 注册一个切换回前台的监听
      * @param callBack
      * @param callBackThisObj
      */
-    static onShow(...callBacks: extension.MethodUnAutoGc[]): void {
-      callBacks.forEach((callBack: extension.MethodUnAutoGc): void => {
-        App.mapCbWhileShow.add(callBack.handler, callBack, callBack.thisObj)
-      })
+    static onShow(handler: Function, thisObj: any, ...args: any[]): void {
+      let method: extension.MethodUnAutoGc = App.mapCbWhileShow.get(handler, thisObj)
+      if (method == null) {
+        method = extension.MethodUnAutoGc.borrow(handler, thisObj)
+        method.updateArgs(args)
+        App.mapCbWhileShow.add(handler, method)
+      }
+    }
+    /**
+     * 取消一个切换到前台的监听
+     * @param handler
+     * @param thisObj
+     */
+    static offShow(handler: Function, thisObj: any): void {
+      let method: extension.MethodUnAutoGc = App.mapCbWhileShow.del(handler, thisObj)
+      if (method != null) {
+        method.return()
+      }
     }
     /**App切到后台 */
     static hide(): void {

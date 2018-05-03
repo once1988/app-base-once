@@ -33,7 +33,7 @@ var com;
     })(base = once.base || (once.base = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once) {
@@ -74,7 +74,7 @@ var com;
     })(utils = once.utils || (once.utils = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once) {
@@ -122,7 +122,7 @@ var com;
     })(base = once.base || (once.base = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once) {
@@ -275,7 +275,7 @@ var com;
     })(extension = once.extension || (once.extension = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once) {
@@ -460,7 +460,7 @@ var com;
     })(extension = once.extension || (once.extension = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once) {
@@ -531,7 +531,7 @@ var com;
     })(manager = once.manager || (once.manager = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once) {
@@ -677,7 +677,7 @@ var com;
     })(manager = once.manager || (once.manager = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once_1) {
@@ -831,7 +831,7 @@ var com;
     })(manager = once_1.manager || (once_1.manager = {}));
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-
+var com;
 (function (com) {
   var once;
   (function (once) {
@@ -852,23 +852,41 @@ var com;
         enumerable: true,
         configurable: true
       });
-      App.onHide = function () {
-        var callBacks = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-          callBacks[_i] = arguments[_i];
+      App.onHide = function (handler, thisObj) {
+        var args = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+          args[_i - 2] = arguments[_i];
         }
-        callBacks.forEach(function (callBack) {
-          App.mapCbWhileHide.add(callBack.handler, callBack, callBack.thisObj);
-        });
+        var method = App.mapCbWhileHide.get(handler, thisObj);
+        if (method == null) {
+          method = once.extension.MethodUnAutoGc.borrow(handler, thisObj);
+          method.updateArgs(args);
+          App.mapCbWhileHide.add(handler, method);
+        }
       };
-      App.onShow = function () {
-        var callBacks = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-          callBacks[_i] = arguments[_i];
+      App.offHide = function (handler, thisObj) {
+        var method = App.mapCbWhileHide.del(handler, thisObj);
+        if (method != null) {
+          method.return();
         }
-        callBacks.forEach(function (callBack) {
-          App.mapCbWhileShow.add(callBack.handler, callBack, callBack.thisObj);
-        });
+      };
+      App.onShow = function (handler, thisObj) {
+        var args = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+          args[_i - 2] = arguments[_i];
+        }
+        var method = App.mapCbWhileShow.get(handler, thisObj);
+        if (method == null) {
+          method = once.extension.MethodUnAutoGc.borrow(handler, thisObj);
+          method.updateArgs(args);
+          App.mapCbWhileShow.add(handler, method);
+        }
+      };
+      App.offShow = function (handler, thisObj) {
+        var method = App.mapCbWhileShow.del(handler, thisObj);
+        if (method != null) {
+          method.return();
+        }
       };
       App.hide = function () {
         if (!App.isBackground) {
@@ -907,4 +925,4 @@ var com;
     once.App = App;
   })(once = com.once || (com.once = {}));
 })(com || (com = {}));
-module.exports = com
+module.export = com

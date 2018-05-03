@@ -1,11 +1,19 @@
 {
   "name": "app-base-once",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "a project for app base",
   "main": "./bin/app-base-once.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/once1988/app-base-once.git"
+  },
   "author": "chenzhilong",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/once1988/app-base-once/issues"
+  },
+  "typings": "./bin/app-base-once.d.ts"
 }
