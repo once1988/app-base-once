@@ -1,6 +1,6 @@
 {
   "name": "app-base-once",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "a project for app base",
   "main": "./bin/app-base-once.js",
   "scripts": {
